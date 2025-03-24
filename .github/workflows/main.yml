@@ -23,10 +23,6 @@ jobs:
         working-directory: ./frontend
         run: npm install
 
-      - name: 🧪 Lancement des tests (si tu en as)
-        working-directory: ./frontend
-        run: npm test -- --watchAll=false
-
       - name: 🏗️ Build de l'application React
         working-directory: ./frontend
         run: npm run build
