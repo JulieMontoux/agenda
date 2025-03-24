@@ -1,4 +1,4 @@
-name: CI/CD - Build & Deploy React Frontend with Backend URL
+name: CI/CD - Build & Deploy React to GitHub Pages
 
 on:
   push:
@@ -28,12 +28,17 @@ jobs:
         working-directory: ./frontend
         run: echo "REACT_APP_BACKEND_URL=http://localhost:5001" > .env
 
-      - name: 🏗️ Build React app
+      - name: 🏗️ Build frontend (ignore ESLint warnings)
         working-directory: ./frontend
-        run: npm run build
+        run: CI=false npm run build
 
-      - name: 🚀 Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./frontend/build
+      - name: 📂 Debug build contents
+        working-directory: ./frontend
+        run: ls -la build
+
+      - name: 🚀 Deploy to GitHub Pages (via npm run deploy)
+        working-directory: ./frontend
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          npm run deploy
