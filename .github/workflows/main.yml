@@ -1,4 +1,4 @@
-name: CI/CD - Build & Deploy React to GitHub Pages
+name: CI/CD - Build & Deploy React to GitHub Pages (with auth fix)
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
         working-directory: ./frontend
         run: echo "REACT_APP_BACKEND_URL=http://localhost:5001" > .env
 
-      - name: 🏗️ Build frontend (ignore ESLint warnings)
+      - name: 🏗️ Build React app
         working-directory: ./frontend
         run: CI=false npm run build
 
@@ -36,9 +36,13 @@ jobs:
         working-directory: ./frontend
         run: ls -la build
 
-      - name: 🚀 Deploy to GitHub Pages (via npm run deploy)
+      - name: 🔐 Configure Git remote with token (auth fix)
         working-directory: ./frontend
         run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
-          npm run deploy
+          git config user.name "JulieMontoux"
+          git config user.email "julie@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+
+      - name: 🚀 Deploy to GitHub Pages via npm run deploy
+        working-directory: ./frontend
+        run: npm run deploy
