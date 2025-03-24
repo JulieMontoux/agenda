@@ -19,6 +19,8 @@ const localizer = dateFnsLocalizer({
 });
 
 export default function CalendarAgenda() {
+  const API_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5001';
+
   const [events, setEvents] = useState([]);
   const [currentView, setCurrentView] = useState(Views.MONTH);
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -26,7 +28,7 @@ export default function CalendarAgenda() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await fetch('http://localhost:5001/api/devoirs');
+        const res = await fetch(`${API_URL}/api/devoirs`);
         const data = await res.json();
         const formatted = data.map((dev) => {
           const start = dev.date_rendu ? new Date(dev.date_rendu) : new Date();

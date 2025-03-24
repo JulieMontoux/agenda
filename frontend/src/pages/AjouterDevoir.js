@@ -7,9 +7,11 @@ export default function AjouterDevoir() {
 
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
 
+  const API_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5001';
+
   const handleSubmit = e => {
     e.preventDefault();
-    fetch('http://localhost:5001/api/devoirs', {
+    fetch(`${API_URL}/api/devoirs`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form)

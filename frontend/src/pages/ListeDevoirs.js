@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 export default function ListeDevoirs() {
   const [devoirs, setDevoirs] = useState([]);
 
+  const API_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5001';
+
   useEffect(() => {
-    fetch('http://localhost:5001/api/devoirs')
+    fetch(`${API_URL}/api/devoirs`)
       .then(res => res.json())
       .then(data => setDevoirs(data));
   }, []);
