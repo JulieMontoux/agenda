@@ -5,15 +5,14 @@ export default function ListeDevoirs() {
   const [devoirs, setDevoirs] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/devoirs')
+    fetch('http://localhost:5001/api/devoirs')
       .then(res => res.json())
       .then(data => setDevoirs(data));
   }, []);
 
   return (
     <div>
-      <h1>Agenda des Devoirs</h1>
-      <Link to="/agenda">Voir le calendrier</Link>
+      <h1>Liste des Devoirs</h1>
       <Link to="/ajouter">Ajouter un devoir</Link>
       <ul>
         {devoirs.map(dev => (

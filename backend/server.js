@@ -8,4 +8,4 @@ app.use(express.json());
 const devoirsRoutes = require('./routes/devoirs');
 app.use('/api/devoirs', devoirsRoutes);
 
-app.listen(5000, () => console.log('Serveur démarré sur http://localhost:5000'));
+app.listen(5001, () => console.log('Serveur démarré sur http://localhost:5001'));

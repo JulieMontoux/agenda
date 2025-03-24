@@ -1,18 +1,16 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import CalendarAgenda from './components/CalendarAgenda';
 import ListeDevoirs from './pages/ListeDevoirs';
 import AjouterDevoir from './pages/AjouterDevoir';
-import CalendarAgenda from './components/CalendarAgenda';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<ListeDevoirs />} />
-        <Route path="/ajouter" element={<AjouterDevoir />} />
-        <Route path="/agenda" element={<CalendarAgenda />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/" element={<CalendarAgenda />} />
+      <Route path="/liste" element={<ListeDevoirs />} />
+      <Route path="/ajouter" element={<AjouterDevoir />} />
+    </Routes>
   );
 }
 

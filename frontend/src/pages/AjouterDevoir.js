@@ -9,7 +9,7 @@ export default function AjouterDevoir() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    fetch('http://localhost:5000/api/devoirs', {
+    fetch('http://localhost:5001/api/devoirs', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form)
