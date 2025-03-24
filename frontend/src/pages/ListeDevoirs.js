@@ -10,7 +10,7 @@ export default function ListeDevoirs() {
     fetch(`${API_URL}/api/devoirs`)
       .then(res => res.json())
       .then(data => setDevoirs(data));
-  }, []);
+  }, [API_URL]);
 
   return (
     <div>

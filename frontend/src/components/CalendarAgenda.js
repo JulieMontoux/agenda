@@ -46,7 +46,7 @@ export default function CalendarAgenda() {
       }
     };
     fetchEvents();
-  }, []);
+  }, [API_URL]);
 
   const handleViewChange = (view) => {
     setCurrentView(view);
