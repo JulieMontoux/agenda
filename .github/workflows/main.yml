@@ -1,0 +1,40 @@
+name: CI - Agenda Devoirs React App
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout du code
+        uses: actions/checkout@v3
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: 📦 Installation des dépendances frontend
+        working-directory: ./frontend
+        run: npm install
+
+      - name: 🧪 Lancement des tests (si tu en as)
+        working-directory: ./frontend
+        run: npm test -- --watchAll=false
+
+      - name: 🏗️ Build de l'application React
+        working-directory: ./frontend
+        run: npm run build
+
+      - name: 📦 Installation des dépendances backend
+        working-directory: ./backend
+        run: npm install
+
+      - name: ✅ Lancer les tests backend (si ajoutés)
+        working-directory: ./backend
+        run: npm test
