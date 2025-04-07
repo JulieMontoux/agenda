@@ -8,4 +8,4 @@ app.use(express.json());
 const devoirsRoutes = require('./routes/devoirs');
 app.use('/api/devoirs', devoirsRoutes);
 
-app.listen(5001, () => console.log('Serveur démarré sur http://localhost:5001'));
+app.listen(5001, () => console.log('Serveur démarré sur https://agenda-8r5i.onrender.com'));
