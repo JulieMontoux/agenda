@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Router } from 'react-router-dom';
+import { HashRouter as Routes, Route, Router } from 'react-router-dom';
 import CalendarAgenda from './components/CalendarAgenda';
 import ListeDevoirs from './pages/ListeDevoirs';
 import AjouterDevoir from './pages/AjouterDevoir';
